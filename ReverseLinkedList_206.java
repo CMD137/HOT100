@@ -10,46 +10,46 @@ public class ReverseLinkedList_206 {
     }
 
     //递归
-    public ListNode reverseList(ListNode head) {
-        //特判
-        if(head==null){
-            return null;
-        }
-
-        //尾结点为新头结点
-        if (head.next == null ){
-            return head;
-        }
-
-        //非尾结点递归处理下一个节点，反转指向,并断开自己的next
-        ListNode newHead = reverseList(head.next);
-        head.next.next=head;
-        head.next=null;
-        return newHead;
-    }
-
-//    //迭代写法
 //    public ListNode reverseList(ListNode head) {
-//        // 定义前驱节点，初始为null
-//        ListNode prev = null;
-//        // 当前节点从头部开始
-//        ListNode curr = head;
-//
-//        // 遍历链表直到当前节点为null
-//        while (curr != null) {
-//            // 保存当前节点的下一个节点
-//            ListNode nextTemp = curr.next;
-//            // 反转当前节点的指向，指向前驱节点
-//            curr.next = prev;
-//            // 前驱节点向后移动（当前节点成为新的前驱）
-//            prev = curr;
-//            // 当前节点向后移动（使用之前保存的next节点）
-//            curr = nextTemp;
+//        //特判
+//        if(head==null){
+//            return null;
 //        }
 //
-//        // 遍历结束后，prev成为新的头节点
-//        return prev;
+//        //尾结点为新头结点
+//        if (head.next == null ){
+//            return head;
+//        }
+//
+//        //非尾结点递归处理下一个节点，反转指向,并断开自己的next
+//        ListNode newHead = reverseList(head.next);
+//        head.next.next=head;
+//        head.next=null;
+//        return newHead;
 //    }
+
+    //迭代写法
+    public ListNode reverseList(ListNode head) {
+        // 定义前驱节点，初始为null
+        ListNode prev = null;
+        // 当前节点从头部开始
+        ListNode curr = head;
+
+        // 遍历链表直到当前节点为null
+        while (curr != null) {
+            // 保存当前节点的下一个节点
+            ListNode nextTemp = curr.next;
+            // 反转当前节点的指向，指向前驱节点
+            curr.next = prev;
+            // 前驱节点向后移动（当前节点成为新的前驱）
+            prev = curr;
+            // 当前节点向后移动（使用之前保存的next节点）
+            curr = nextTemp;
+        }
+
+        // 遍历结束后，prev成为新的头节点
+        return prev;
+    }
 
     public static void main(String[] args) {
         ListNode n1 = new ListNode(1);
@@ -71,7 +71,6 @@ public class ReverseLinkedList_206 {
             System.out.print("->");
             newHead = newHead.next;
         }
-
 
     }
 
